@@ -1,41 +1,38 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <div id="calculator">
-      <input id="display" readonly />
-      <div id="keys">
-        <button id="delete" onClick="backspace()">⌫</button>
-        <button id="action-buttons" onClick="clearDisplay()">AC</button>
-        <button id="action-buttons" onClick="appendToDisplay('toggle')">
-          + / -
-        </button>
-        <button id="action-buttons" onClick="appendToDisplay('percent')">
-          %
-        </button>
-        <button id="operators" onClick="appendToDisplay('/')">/</button>
-        <button onClick="appendToDisplay('7')">7</button>
-        <button onClick="appendToDisplay('8')">8</button>
-        <button onClick="appendToDisplay('9')">9</button>
-        <button id="operators" onClick="appendToDisplay('*')">*</button>
-        <button onClick="appendToDisplay('4')">4</button>
-        <button onClick="appendToDisplay('5')">5</button>
-        <button onClick="appendToDisplay('6')">6</button>
-        <button id="operators" onClick="appendToDisplay('-')">-</button>
-        <button onClick="appendToDisplay('1')">1</button>
-        <button onClick="appendToDisplay('2')">2</button>
-        <button onClick="appendToDisplay('3')">3</button>
-        <button id="operators" onClick="appendToDisplay('+')">+</button>
-        <button onClick="appendToDisplay('0')">0</button>
-        <button onClick="appendToDisplay('.')">.</button>
-        <button id="operators" onClick="calculate()">=</button>
-      </div>
-    </div>
-    <script src="script.js" defer></script>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Calculator</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div id="calculator">
+            <input id="display" readonly />
+            <div id="keys">
+                <!-- Action buttons -->
+                <button id="delete" class="action-button">⌫</button>
+                <button id="clear" class="action-button">AC</button>
+                <button id="toggle" class="action-button">+ / -</button>
+                <button id="percent" class="action-button">%</button>
+                <!-- First row -->
+                <button id="divide" class="operator">/</button>
+                <button id="seven">7</button> <button id="eight">8</button>
+                <button id="nine">9</button>
+                <!-- Second row -->
+                <button id="multiply" class="operator">*</button>
+                <button id="four">4</button> <button id="five">5</button>
+                <button id="six">6</button>
+                <!-- Third row -->
+                <button id="subtract" class="operator">-</button>
+                <button id="one">1</button> <button id="two">2</button>
+                <button id="three">3</button>
+                <!-- Fourth row -->
+                <button id="add" class="operator">+</button>
+                <button id="zero">0</button> <button id="decimal">.</button>
+                <button id="equals" class="operator">=</button>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
 </html>
