@@ -1,19 +1,41 @@
 <!doctype html>
-<html>
-    <head>
-        <!-- encoding -->
-        <meta charset="UTF-8" />
-
-        <!-- page title -->
-        <title>Calculator</title>
-
-        <!-- page description -->
-        <meta name="description" content="Calculator" />
-
-        <!-- js link -->
-        <script src="script.js" defer></script>
-    </head>
-    <body>
-        
-    </body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="calculator">
+      <input id="display" readonly />
+      <div id="keys">
+        <button id="delete" onClick="backspace()">⌫</button>
+        <button id="action-buttons" onClick="clearDisplay()">AC</button>
+        <button id="action-buttons" onClick="appendToDisplay('toggle')">
+          + / -
+        </button>
+        <button id="action-buttons" onClick="appendToDisplay('percent')">
+          %
+        </button>
+        <button id="operators" onClick="appendToDisplay('/')">/</button>
+        <button onClick="appendToDisplay('7')">7</button>
+        <button onClick="appendToDisplay('8')">8</button>
+        <button onClick="appendToDisplay('9')">9</button>
+        <button id="operators" onClick="appendToDisplay('*')">*</button>
+        <button onClick="appendToDisplay('4')">4</button>
+        <button onClick="appendToDisplay('5')">5</button>
+        <button onClick="appendToDisplay('6')">6</button>
+        <button id="operators" onClick="appendToDisplay('-')">-</button>
+        <button onClick="appendToDisplay('1')">1</button>
+        <button onClick="appendToDisplay('2')">2</button>
+        <button onClick="appendToDisplay('3')">3</button>
+        <button id="operators" onClick="appendToDisplay('+')">+</button>
+        <button onClick="appendToDisplay('0')">0</button>
+        <button onClick="appendToDisplay('.')">.</button>
+        <button id="operators" onClick="calculate()">=</button>
+      </div>
+    </div>
+    <script src="index.js" defer></script>
+  </body>
 </html>
