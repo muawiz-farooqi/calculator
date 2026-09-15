@@ -1,0 +1,85 @@
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: hsl(0, 0%, 90%);
+}
+
+#calculator {
+  font-family: Arial, sans-serif;
+  background-color: hsl(0, 0%, 15%);
+  border-radius: 15px;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+#display {
+  width: 100%;
+  padding: 20px;
+  font-size: 5rem;
+  text-align: left;
+  border: none;
+  background-color: hsl(0, 0%, 40%);
+  color: white;
+}
+
+#keys {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 25px;
+}
+
+#action-buttons {
+  background-color: dodgerblue;
+}
+
+#operators {
+  background-color: forestgreen;
+}
+
+#delete {
+  background-color: hsl(0, 0%, 50%);
+}
+
+button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+  border: none;
+  background-color: hsl(0, 0%, 30%);
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: hsl(0, 0%, 40%);
+}
+
+button:active {
+  background-color: hsl(0, 0%, 50%);
+}
+
+#action-buttons:hover {
+  background-color: hsl(225, 73%, 57%);
+}
+#operators:hover {
+  background-color: hsl(147, 50%, 47%);
+}
+#delete:hover {
+  background-color: hsl(0, 0%, 60%);
+}
+
+#action-buttons:active {
+  background-color: hsl(225, 73%, 67%);
+}
+#operators:active {
+  background-color: hsl(147, 50%, 57%);
+}
+#delete:active {
+  background-color: chocolate;
+}
