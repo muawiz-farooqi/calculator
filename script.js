@@ -31,10 +31,13 @@ numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (display.value === "0" || operatorClicked) {
             display.value = number.textContent;
+            operatorClicked = false;
         } else {
             display.value += number.textContent;
+            if (display.value.length < MAX_DIGITS) {
+                display.value += number.textContent;
+            }
         }
-        operatorClicked = false;
     });
 });
 
@@ -83,7 +86,9 @@ decimal.addEventListener("click", () => {
         display.value = "0.";
         operatorClicked = false;
     } else if (!display.value.includes(".")) {
-        display.value = String(display.value) + ".";
+        if (display.value.length < MAX_DIGITS) {
+            display.value = String(display.value) + ".";
+        }
     }
 });
 
@@ -114,6 +119,21 @@ signToggle.addEventListener("click", () => {
         display.value *= -1;
     }
 });
+
+// percentage
+const percentage = document.querySelector("#percent");
+percentage.addEventListener("click", () => {
+    if (display.value !== "0" && display.value !== "💥💥💥💥") {
+        let currentValue = Number(display.value);
+        let pctValue = currentValue / 100;
+        display.value = formatCalculatorDisplay(pctValue);
+        // If they hit percent right after an operator, update the tracked state
+        if (operatorClicked) {
+            operatorClicked = false;
+        }
+    }
+});
+
 
 // formatting display
 function formatCalculatorDisplay(value) {
