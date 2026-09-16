@@ -19,7 +19,7 @@ function operate(operator, num1, num2) {
 let first_num = null;
 let second_num = null;
 let curr_operator = null;
-let equalsClicked = false;
+let operatorClicked = false;
 const MAX_DIGITS = 8;
 
 const display = document.querySelector("#display");
@@ -29,30 +29,27 @@ const numbers = document.querySelectorAll(".number");
 
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
-        if (display.value === "0" || equalsClicked) {
+        if (display.value === "0" || operatorClicked) {
             display.value = number.textContent;
-            equalsClicked = false;
         } else {
             display.value += number.textContent;
         }
+        operatorClicked = false;
     });
-});
-
-// .
-const decimal = document.querySelector("#decimal");
-decimal.addEventListener("click", () => {
-    if (!display.value.includes(".")) {
-        display.value = String(display.value) + ".";
-    }
 });
 
 // + - * / =
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) =>
     operator.addEventListener("click", () => {
+        if (operatorClicked && first_num !== null) {
+            curr_operator = operator.textContent;
+            return;
+        }
+        operatorClicked = true;
+
         if (first_num === null) {
             first_num = Number(display.value);
-            display.value = "0";
             curr_operator = operator.textContent;
         } else {
             second_num = Number(display.value);
@@ -68,31 +65,39 @@ operators.forEach((operator) =>
 
             first_num = operate(curr_operator, first_num, second_num);
             curr_operator = operator.textContent;
+            display.value = formatCalculatorDisplay(first_num);
 
             if (curr_operator === "=") {
-                equalsClicked = true;
-                display.value = formatCalculatorDisplay(first_num);
                 first_num = null;
                 second_num = null;
                 curr_operator = null;
-            } else {
-                display.value = "0";
             }
         }
     }),
 );
 
-// AC
+// .
+const decimal = document.querySelector("#decimal");
+decimal.addEventListener("click", () => {
+    if (operatorClicked) {
+        display.value = "0.";
+        operatorClicked = false;
+    } else if (!display.value.includes(".")) {
+        display.value = String(display.value) + ".";
+    }
+});
+
+// AC/clear
 const clear = document.querySelector("#clear");
 clear.addEventListener("click", () => {
     display.value = "0";
     first_num = null;
     second_num = null;
     curr_operator = null;
-    equalsClicked = false;
+    operatorClicked = false;
 });
 
-// Delete
+// delete/backspace
 const backspace = document.querySelector("#delete");
 backspace.addEventListener("click", () => {
     if (display.value.length === 1) {
@@ -105,7 +110,7 @@ backspace.addEventListener("click", () => {
 // toggle sign
 const signToggle = document.querySelector("#toggle");
 signToggle.addEventListener("click", () => {
-    if (display.value != 0) {
+    if (display.value !== 0) {
         display.value *= -1;
     }
 });
@@ -120,5 +125,5 @@ function formatCalculatorDisplay(value) {
     let formatted = num.toPrecision(MAX_DIGITS);
     let clean = Number(formatted);
     return clean.toString();
-    console.log(formatted, clean);
+    // console.log(formatted, clean);
 }
