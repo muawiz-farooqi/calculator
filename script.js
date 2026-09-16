@@ -44,6 +44,10 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) =>
     operator.addEventListener("click", () => {
+        if (operator.textContent === "=" && curr_operator === null) {
+            return;
+        }
+        
         if (operatorClicked && first_num !== null) {
             curr_operator = operator.textContent;
             return;
