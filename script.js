@@ -15,3 +15,135 @@ function operate(operator, num1, num2) {
             return multiply(num1, num2);
     }
 }
+
+let first_num = null;
+let second_num = null;
+let curr_operator = null;
+let operatorClicked = false;
+const MAX_DIGITS = 8;
+
+const display = document.querySelector("#display");
+
+// 0 1 2 3 4 5 6 7 8 9
+const numbers = document.querySelectorAll(".number");
+
+numbers.forEach((number) => {
+    number.addEventListener("click", () => {
+        if (display.value === "0" || operatorClicked) {
+            display.value = number.textContent;
+            operatorClicked = false;
+        } else {
+            display.value += number.textContent;
+            if (display.value.length < MAX_DIGITS) {
+                display.value += number.textContent;
+            }
+        }
+    });
+});
+
+// + - * / =
+const operators = document.querySelectorAll(".operator");
+operators.forEach((operator) =>
+    operator.addEventListener("click", () => {
+        if (operatorClicked && first_num !== null) {
+            curr_operator = operator.textContent;
+            return;
+        }
+        operatorClicked = true;
+
+        if (first_num === null) {
+            first_num = Number(display.value);
+            curr_operator = operator.textContent;
+        } else {
+            second_num = Number(display.value);
+
+            // catch divide by zero
+            if (curr_operator === "/" && second_num == 0) {
+                display.value = "💥💥💥💥";
+                first_num = null;
+                second_num = null;
+                curr_operator = null;
+                return;
+            }
+
+            first_num = operate(curr_operator, first_num, second_num);
+            curr_operator = operator.textContent;
+            display.value = formatCalculatorDisplay(first_num);
+
+            if (curr_operator === "=") {
+                first_num = null;
+                second_num = null;
+                curr_operator = null;
+            }
+        }
+    }),
+);
+
+// .
+const decimal = document.querySelector("#decimal");
+decimal.addEventListener("click", () => {
+    if (operatorClicked) {
+        display.value = "0.";
+        operatorClicked = false;
+    } else if (!display.value.includes(".")) {
+        if (display.value.length < MAX_DIGITS) {
+            display.value = String(display.value) + ".";
+        }
+    }
+});
+
+// AC/clear
+const clear = document.querySelector("#clear");
+clear.addEventListener("click", () => {
+    display.value = "0";
+    first_num = null;
+    second_num = null;
+    curr_operator = null;
+    operatorClicked = false;
+});
+
+// delete/backspace
+const backspace = document.querySelector("#delete");
+backspace.addEventListener("click", () => {
+    if (display.value.length === 1) {
+        display.value = "0";
+    } else if (display.value.length > 1) {
+        display.value = display.value.slice(0, -1);
+    }
+});
+
+// toggle sign
+const signToggle = document.querySelector("#toggle");
+signToggle.addEventListener("click", () => {
+    if (display.value !== 0) {
+        display.value *= -1;
+    }
+});
+
+// percentage
+const percentage = document.querySelector("#percent");
+percentage.addEventListener("click", () => {
+    if (display.value !== "0" && display.value !== "💥💥💥💥") {
+        let currentValue = Number(display.value);
+        let pctValue = currentValue / 100;
+        display.value = formatCalculatorDisplay(pctValue);
+        // If they hit percent right after an operator, update the tracked state
+        if (operatorClicked) {
+            operatorClicked = false;
+        }
+    }
+});
+
+
+// formatting display
+function formatCalculatorDisplay(value) {
+    if (value === "0" || value === "0.") return value;
+
+    let num = Number(value);
+    if (isNaN(num)) return value;
+
+    let formatted = num.toPrecision(MAX_DIGITS);
+    let clean = Number(formatted);
+    return clean.toString();
+    // console.log(formatted, clean);
+}

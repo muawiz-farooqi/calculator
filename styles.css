@@ -6,7 +6,6 @@ body {
   height: 100vh;
   background-color: hsl(0, 0%, 90%);
 }
-
 #calculator {
   font-family: Arial, sans-serif;
   background-color: hsl(0, 0%, 15%);
@@ -14,36 +13,23 @@ body {
   max-width: 500px;
   overflow: hidden;
 }
-
 #display {
   width: 100%;
   padding: 20px;
   font-size: 5rem;
-  text-align: left;
+  text-align: right;
   border: none;
   background-color: hsl(0, 0%, 40%);
   color: white;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-
 #keys {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
   padding: 25px;
 }
-
-#action-buttons {
-  background-color: dodgerblue;
-}
-
-#operators {
-  background-color: forestgreen;
-}
-
-#delete {
-  background-color: hsl(0, 0%, 50%);
-}
-
 button {
   width: 100px;
   height: 100px;
@@ -55,30 +41,35 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
-
 button:hover {
   background-color: hsl(0, 0%, 40%);
 }
-
 button:active {
   background-color: hsl(0, 0%, 50%);
 }
-
-#action-buttons:hover {
+.action-button {
+  background-color: dodgerblue;
+}
+.action-button:hover {
   background-color: hsl(225, 73%, 57%);
 }
-#operators:hover {
+.action-button:active {
+  background-color: hsl(225, 73%, 67%);
+}
+.operator {
+  background-color: forestgreen;
+}
+.operator:hover {
   background-color: hsl(147, 50%, 47%);
+}
+.operator:active {
+  background-color: hsl(147, 50%, 57%);
+}
+#delete {
+  background-color: hsl(0, 0%, 50%);
 }
 #delete:hover {
   background-color: hsl(0, 0%, 60%);
-}
-
-#action-buttons:active {
-  background-color: hsl(225, 73%, 67%);
-}
-#operators:active {
-  background-color: hsl(147, 50%, 57%);
 }
 #delete:active {
   background-color: chocolate;
