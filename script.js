@@ -33,7 +33,6 @@ numbers.forEach((number) => {
             display.value = number.textContent;
             operatorClicked = false;
         } else {
-            display.value += number.textContent;
             if (display.value.length < MAX_DIGITS) {
                 display.value += number.textContent;
             }
