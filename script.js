@@ -20,7 +20,8 @@ let first_num = null;
 let second_num = null;
 let curr_operator = null;
 let operatorClicked = false;
-const MAX_DIGITS = 8;
+const MAX_INPUT_DIGITS = 8;
+const MAX_RESULT_DIGITS = 10;
 
 const display = document.querySelector("#display");
 
@@ -33,7 +34,7 @@ numbers.forEach((number) => {
             display.value = number.textContent;
             operatorClicked = false;
         } else {
-            if (display.value.length < MAX_DIGITS) {
+            if (display.value.length < MAX_INPUT_DIGITS) {
                 display.value += number.textContent;
             }
         }
@@ -44,10 +45,8 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) =>
     operator.addEventListener("click", () => {
-        if (operator.textContent === "=" && curr_operator === null) {
-            return;
-        }
-        
+        if (operator.textContent === "=" && curr_operator === null) return;
+
         if (operatorClicked && first_num !== null) {
             curr_operator = operator.textContent;
             return;
@@ -89,7 +88,7 @@ decimal.addEventListener("click", () => {
         display.value = "0.";
         operatorClicked = false;
     } else if (!display.value.includes(".")) {
-        if (display.value.length < MAX_DIGITS) {
+        if (display.value.length < MAX_INPUT_DIGITS) {
             display.value = String(display.value) + ".";
         }
     }
@@ -137,7 +136,6 @@ percentage.addEventListener("click", () => {
     }
 });
 
-
 // formatting display
 function formatCalculatorDisplay(value) {
     if (value === "0" || value === "0.") return value;
@@ -145,8 +143,11 @@ function formatCalculatorDisplay(value) {
     let num = Number(value);
     if (isNaN(num)) return value;
 
-    let formatted = num.toPrecision(MAX_DIGITS);
-    let clean = Number(formatted);
-    return clean.toString();
-    // console.log(formatted, clean);
+    // scientific notation for large nums
+    if (Math.abs(num) >= 10 ** MAX_RESULT_DIGITS) {
+        return num.toExponential(2);
+    }
+
+    let formatted = num.toPrecision(MAX_INPUT_DIGITS);
+    return Number(formatted).toString();
 }
