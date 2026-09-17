@@ -52,13 +52,13 @@ operators.forEach((operator) =>
             return;
         }
         operatorClicked = true;
-        console.log(first_num, second_num, curr_operator)
+        console.log(first_num, second_num, curr_operator);
         if (first_num === null) {
-            console.log(first_num, second_num, curr_operator)
+            console.log(first_num, second_num, curr_operator);
             first_num = Number(display.value);
             curr_operator = operator.innerText;
         } else {
-            console.log(first_num, second_num, curr_operator)
+            console.log(first_num, second_num, curr_operator);
             second_num = Number(display.value);
 
             // catch divide by zero
@@ -142,16 +142,23 @@ percentage.addEventListener("click", () => {
 document.addEventListener("keydown", (event) => {
     const pressedKey = event.key;
 
-    const allButtons = document.querySelectorAll('#keys button');
+    const allButtons = document.querySelectorAll("#keys button");
 
-    const matchingButton = Array.from(allButtons).find(button => {
-        const dataKeys = button.getAttribute('data-key') || '';
+    const matchingButton = Array.from(allButtons).find((button) => {
+        const dataKeys = button.getAttribute("data-key") || "";
         return dataKeys.split(/\s+/).includes(pressedKey);
     });
-    console.log(pressedKey, matchingButton)
+    // console.log(pressedKey, matchingButton); // DEBUG
 
     if (matchingButton) {
+        // stop alternative browser button actions
+        event.preventDefault();
+
         matchingButton.click();
+
+        // mimick button clicking animation
+        matchingButton.classList.add("active");
+        setTimeout(() => matchingButton.classList.remove("active"), 100);
     }
 });
 

@@ -44,6 +44,7 @@ button {
 button:hover {
   background-color: hsl(0, 0%, 40%);
 }
+button.active,
 button:active {
   background-color: hsl(0, 0%, 50%);
 }
@@ -53,6 +54,7 @@ button:active {
 .action-button:hover {
   background-color: hsl(225, 73%, 57%);
 }
+.action-button.active,
 .action-button:active {
   background-color: hsl(225, 73%, 67%);
 }
@@ -62,6 +64,7 @@ button:active {
 .operator:hover {
   background-color: hsl(147, 50%, 47%);
 }
+.operator.active,
 .operator:active {
   background-color: hsl(147, 50%, 57%);
 }
@@ -71,6 +74,7 @@ button:active {
 #delete:hover {
   background-color: hsl(0, 0%, 60%);
 }
+#delete.active,
 #delete:active {
   background-color: chocolate;
 }
