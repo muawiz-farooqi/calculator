@@ -31,11 +31,11 @@ const numbers = document.querySelectorAll(".number");
 numbers.forEach((number) => {
     number.addEventListener("click", () => {
         if (display.value === "0" || operatorClicked) {
-            display.value = number.textContent;
+            display.value = number.innerText;
             operatorClicked = false;
         } else {
             if (display.value.length < MAX_INPUT_DIGITS) {
-                display.value += number.textContent;
+                display.value += number.innerText;
             }
         }
     });
@@ -45,18 +45,20 @@ numbers.forEach((number) => {
 const operators = document.querySelectorAll(".operator");
 operators.forEach((operator) =>
     operator.addEventListener("click", () => {
-        if (operator.textContent === "=" && curr_operator === null) return;
+        if (operator.innerText === "=" && curr_operator === null) return;
 
         if (operatorClicked && first_num !== null) {
-            curr_operator = operator.textContent;
+            curr_operator = operator.innerText;
             return;
         }
         operatorClicked = true;
-
+        console.log(first_num, second_num, curr_operator)
         if (first_num === null) {
+            console.log(first_num, second_num, curr_operator)
             first_num = Number(display.value);
-            curr_operator = operator.textContent;
+            curr_operator = operator.innerText;
         } else {
+            console.log(first_num, second_num, curr_operator)
             second_num = Number(display.value);
 
             // catch divide by zero
@@ -69,7 +71,7 @@ operators.forEach((operator) =>
             }
 
             first_num = operate(curr_operator, first_num, second_num);
-            curr_operator = operator.textContent;
+            curr_operator = operator.innerText;
             display.value = formatCalculatorDisplay(first_num);
 
             if (curr_operator === "=") {
@@ -133,6 +135,23 @@ percentage.addEventListener("click", () => {
         if (operatorClicked) {
             operatorClicked = false;
         }
+    }
+});
+
+// keyboard support
+document.addEventListener("keydown", (event) => {
+    const pressedKey = event.key;
+
+    const allButtons = document.querySelectorAll('#keys button');
+
+    const matchingButton = Array.from(allButtons).find(button => {
+        const dataKeys = button.getAttribute('data-key') || '';
+        return dataKeys.split(/\s+/).includes(pressedKey);
+    });
+    console.log(pressedKey, matchingButton)
+
+    if (matchingButton) {
+        matchingButton.click();
     }
 });
 

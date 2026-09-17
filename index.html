@@ -12,30 +12,73 @@
             <input id="display" value="0" readonly />
             <div id="keys">
                 <!-- Action buttons -->
-                <button id="delete" class="action-button">⌫</button>
-                <button id="clear" class="action-button">AC</button>
-                <button id="toggle" class="action-button">+ / -</button>
-                <button id="percent" class="action-button">%</button>
+                <button
+                    id="delete"
+                    class="action-button"
+                    data-key="Backspace Delete"
+                >
+                    ⌫
+                </button>
+                <button id="clear" class="action-button" data-key="Escape">
+                    AC
+                </button>
+                <button id="toggle" class="action-button" data-key="_">
+                    + / -
+                </button>
+                <button id="percent" class="action-button" data-key="%">
+                    %
+                </button>
+
                 <!-- First row -->
-                <button id="divide" class="operator">/</button>
-                <button id="seven" class="number">7</button>
-                <button id="eight" class="number">8</button>
-                <button id="nine" class="number">9</button>
+                <button id="divide" class="operator" data-key="/ NumpadDivide">
+                    /
+                </button>
+                <button id="seven" class="number" data-key="7 Numpad7">
+                    7
+                </button>
+                <button id="eight" class="number" data-key="8 Numpad8">
+                    8
+                </button>
+                <button id="nine" class="number" data-key="9 Numpad9">9</button>
+
                 <!-- Second row -->
-                <button id="multiply" class="operator">*</button>
-                <button id="four" class="number">4</button>
-                <button id="five" class="number">5</button>
-                <button id="six" class="number">6</button>
+                <button
+                    id="multiply"
+                    class="operator"
+                    data-key="* NumpadMultiply"
+                >
+                    *
+                </button>
+                <button id="four" class="number" data-key="4 Numpad4">4</button>
+                <button id="five" class="number" data-key="5 Numpad5">5</button>
+                <button id="six" class="number" data-key="6 Numpad6">6</button>
                 <!-- Third row -->
-                <button id="subtract" class="operator">-</button>
-                <button id="one" class="number">1</button>
-                <button id="two" class="number">2</button>
-                <button id="three" class="number">3</button>
+                <button
+                    id="subtract"
+                    class="operator"
+                    data-key="- NumpadSubtract"
+                >
+                    -
+                </button>
+                <button id="one" class="number" data-key="1 Numpad1">1</button>
+                <button id="two" class="number" data-key="2 Numpad2">2</button>
+                <button id="three" class="number" data-key="3 Numpad3">
+                    3
+                </button>
+
                 <!-- Fourth row -->
-                <button id="add" class="operator">+</button>
-                <button id="zero" class="number">0</button>
-                <button id="decimal">.</button>
-                <button id="equals" class="operator">=</button>
+                <button id="add" class="operator" data-key="+ NumpadAdd">
+                    +
+                </button>
+                <button id="zero" class="number" data-key="0 Numpad0">0</button>
+                <button id="decimal" data-key=". NumpadDecimal">.</button>
+                <button
+                    id="equals"
+                    class="operator"
+                    data-key="Enter = NumpadEnter"
+                >
+                    =
+                </button>
             </div>
         </div>
     </body>
