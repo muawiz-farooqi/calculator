@@ -52,13 +52,12 @@ operators.forEach((operator) =>
             return;
         }
         operatorClicked = true;
-        console.log(first_num, second_num, curr_operator);
+
         if (first_num === null) {
-            console.log(first_num, second_num, curr_operator);
+            if (display.value === "💥💥💥💥") return;
             first_num = Number(display.value);
             curr_operator = operator.innerText;
         } else {
-            console.log(first_num, second_num, curr_operator);
             second_num = Number(display.value);
 
             // catch divide by zero
@@ -109,6 +108,7 @@ clear.addEventListener("click", () => {
 // delete/backspace
 const backspace = document.querySelector("#delete");
 backspace.addEventListener("click", () => {
+    if (display.value === "💥💥💥💥") return;
     if (display.value.length === 1) {
         display.value = "0";
     } else if (display.value.length > 1) {
@@ -119,7 +119,7 @@ backspace.addEventListener("click", () => {
 // toggle sign
 const signToggle = document.querySelector("#toggle");
 signToggle.addEventListener("click", () => {
-    if (display.value !== 0) {
+    if (display.value !== 0 && display.value !== "💥💥💥💥") {
         display.value *= -1;
     }
 });
@@ -148,7 +148,6 @@ document.addEventListener("keydown", (event) => {
         const dataKeys = button.getAttribute("data-key") || "";
         return dataKeys.split(/\s+/).includes(pressedKey);
     });
-    // console.log(pressedKey, matchingButton); // DEBUG
 
     if (matchingButton) {
         // stop alternative browser button actions
